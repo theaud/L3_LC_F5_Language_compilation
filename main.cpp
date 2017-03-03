@@ -1,9 +1,4 @@
-#include <iostream>
-
-using namespace std;
-
-#include "Entrer.h"
-bool debug=true;
+#include "include.h"
 
 int main() {
 
