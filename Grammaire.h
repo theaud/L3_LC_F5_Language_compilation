@@ -2,18 +2,19 @@
 
 #ifndef L3_LC_F5_LANGUAGE_COMPILATION_GRAMMAIRE_H
 #define L3_LC_F5_LANGUAGE_COMPILATION_GRAMMAIRE_H
-#include <iostream>
-#include <vector>
+#include "include.h"
 
-using namespace std;
+#include "Regle.h"
 
 class Grammaire {
+public :
+vector <Regle> List_Regle;
 
-vector <string> Gramaire;
+public :
 
-
-
-
+    Grammaire();
+    Grammaire(const char *Fichier);
+    Grammaire(vector<string> grammaire_brut);
 };
 
 
