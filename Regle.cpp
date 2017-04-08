@@ -1,7 +1,8 @@
 #include "Regle.h"
 
-Regle::Regle()
+Regle::Regle(vector<string> entrer)
 {
+
     if(entrer.size()<=2){cerr<<"Regle::Regle(vector<string> entrer) , Entrer trop courte"<<endl;}
     if(entrer[1]!="="){cerr<<"Regle::Regle(vector<string> entrer) , Erreur de synthaxe"<<endl;}
 
@@ -44,16 +45,16 @@ Regle::Regle(string nom,vector<string> entrer)
 
 void Regle::afficher()
 {
-    cout<<endl<<"Regle :"<<Nom<<" :"<<endl;
+    cout<<endl<<"Regle : "<<Nom<<" donne :"<<endl;
     for(vector<string>ligne :token)
-    {
+    {cout<<"     ";
         for(string Case:ligne)
         {
             cout<<" "<<Case;
         }
         cout<<endl;
     }
-    cout<<endl;
+
 
 
 }

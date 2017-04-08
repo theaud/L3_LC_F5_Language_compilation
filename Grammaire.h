@@ -15,6 +15,12 @@ public :
     Grammaire();
     Grammaire(const char *Fichier);
     Grammaire(vector<string> grammaire_brut);
+
+
+    vector<string> get_premier();
+    vector<string> get_suivant();
+
+
 };
 
 

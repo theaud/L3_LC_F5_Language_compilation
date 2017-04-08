@@ -12,7 +12,7 @@ public:
     vector<vector<string>> token;
 
 
-    Regle();
+    Regle(vector<string> entrer);
     Regle(string nom,vector<string> entrer);
    void afficher();
 

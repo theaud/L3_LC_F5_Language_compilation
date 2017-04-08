@@ -1,21 +1,22 @@
 #include <vector>
+#include <malloc.h>
 #include "include.h"
 #include "Regle.h"
 #include "Entrer.h"
 #include "Grammaire.h"
+#include "Structure.h"
 
-int main() {
-
-
-
+int main(int argc, char *argv[]) {
 
 
-    Entrer a;
-    a.lecture("F5G0.txt");
 
-    Grammaire(a.Texte);
 
-    Grammaire("F5G0.txt");
+
+
+
+
+    Structure a=Structure();
+
 
     return 0;
 }

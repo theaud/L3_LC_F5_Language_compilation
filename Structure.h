@@ -10,8 +10,15 @@ using namespace std;
 #include "Grammaire.h"
 
 class Structure {
-    //vector<Grammaire> Grammaire_brute;
-    //vector<Grammaire> Gramairre_derecurssiver;
+public:
+
+    Grammaire Grammaire_brute;
+    Grammaire Gramairre_derecurssiver;
+    vector<string> premier;
+    vector<string> suivant;
+
+    Structure();
+
 
 
 };

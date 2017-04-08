@@ -1,7 +1,3 @@
-//
-// Created by mathieu on 22/03/2017.
-//
-
 #include "Camille.h"
 
 
@@ -10,8 +6,10 @@ Grammaire Camille::Derecusivite_gauche(Grammaire entrer)
     Grammaire Derecusive;
 
 
-    for(Regle tester:Derecusive.List_Regle)
-    {int nb_recursivite=recusive(tester);
+    for(int i=0;i<entrer.List_Regle.size();i++)
+    {Regle tester=entrer.List_Regle[i];
+
+        int nb_recursivite=recusive(tester);
         if(nb_recursivite)
         { if(tester.token.size()==1){cerr<<" impossible de derecursiver une regle d'un seul maillon";}
          //--------------------------------------------------------------------------------------
@@ -30,6 +28,7 @@ Grammaire Camille::Derecusivite_gauche(Grammaire entrer)
             {Derecusive.List_Regle.push_back(tester);}
     }
 
+
     return Derecusive;
 }
 
@@ -40,7 +39,7 @@ bool Camille::recusive(Regle tester)
         for(string current:ligne)
         {
             if(current==tester.Nom)
-            { return true}
+            { return true;}
         }
     }
 
