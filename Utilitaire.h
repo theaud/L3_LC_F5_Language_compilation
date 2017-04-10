@@ -16,6 +16,12 @@ public:
     static void affichageln( vector<string> entrer);
     static void affichage(vector<string> entrer);
     static vector<string> parse(string entrer);
+    static bool appartient(string a,vector<string>non_terminaux);
+    static vector<string> extend(string valeur);
+    static vector<string> test();
+    static void ecriture_fichier( const char *Fichier,vector<string> entrer);
+
+
 };
 
 

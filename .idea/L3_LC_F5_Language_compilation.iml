@@ -8,15 +8,17 @@
       <sourceFolder url="file://$MODULE_DIR$/Camille.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Utilitaire.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Structure.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Structure.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Grammaire.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Entrer.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Utilitaire.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Camille.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/premier_suivant.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Regle.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Grammaire.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Structure.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/premier_suivant.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

@@ -1,21 +1,21 @@
 #include "Camille.h"
 
-
+/*
 Grammaire Camille::Derecusivite_gauche(Grammaire entrer)
 {
+
     Grammaire Derecusive;
 
+    for(Regle tester:*entrer.List_Regle)
+    {
 
-    for(int i=0;i<entrer.List_Regle.size();i++)
-    {Regle tester=entrer.List_Regle[i];
-
-        int nb_recursivite=recusive(tester);
+        int nb_recursivite=recusive(*tester);
         if(nb_recursivite)
-        { if(tester.token.size()==1){cerr<<" impossible de derecursiver une regle d'un seul maillon";}
+        { if(tester->token.size()==1){cerr<<" impossible de derecursiver une regle d'un seul maillon";}
          //--------------------------------------------------------------------------------------
-            for(vector<string> current:tester.token)
+            for(vector<string> current:tester->token)
             {
-                if(current[0]==tester.Nom)
+                if(current[0]==tester->Nom)
                 {
                     //transformer S = S alpha en S= BetaS'
                     //mettre regle S' = alpha S' | epsilon
@@ -25,7 +25,7 @@ Grammaire Camille::Derecusivite_gauche(Grammaire entrer)
             }
         }
         else
-            {Derecusive.List_Regle.push_back(tester);}
+            {Derecusive.List_Regle->push_back(tester);}
     }
 
 
@@ -45,3 +45,5 @@ bool Camille::recusive(Regle tester)
 
   return false;
 }
+
+}*/

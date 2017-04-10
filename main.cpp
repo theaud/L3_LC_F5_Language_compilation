@@ -6,16 +6,12 @@
 #include "Grammaire.h"
 #include "Structure.h"
 
+
+
+
 int main(int argc, char *argv[]) {
 
-
-
-
-
-
-
-
-    Structure a=Structure();
+   Structure aaaa=Structure();
 
 
     return 0;

@@ -1,4 +1,13 @@
+#include <fstream>
 #include "Regle.h"
+
+//----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------   Constructeur    ----------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+Regle::Regle()
+{
+
+}
 
 Regle::Regle(vector<string> entrer)
 {
@@ -41,20 +50,65 @@ Regle::Regle(string nom,vector<string> entrer)
     token.push_back(current);
 
 }
-
-
-void Regle::afficher()
+Regle::Regle(string nom,string entrer)
 {
-    cout<<endl<<"Regle : "<<Nom<<" donne :"<<endl;
-    for(vector<string>ligne :token)
-    {cout<<"     ";
-        for(string Case:ligne)
-        {
-            cout<<" "<<Case;
-        }
-        cout<<endl;
-    }
-
-
+    Nom=nom;
+    vector<string> current;
+    current.push_back(entrer);
+    token.push_back(current);
 
 }
+//----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------   afficher    ----------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+vector<string> Regle::afficher()
+{    vector<string> returned;
+    returned.push_back("Regle : "+Nom+" donne :");
+    for(vector<string>ligne :token)
+    {string tmp="     ";
+         for(string Case:ligne)
+        {tmp+=" "+Case;}
+        returned.push_back(tmp);
+    }
+    return returned ;
+}
+//----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------   get_premier/get_suivant    ----------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+vector<string> Regle::get_premier()
+{
+    vector<string> premier;
+    for(vector<string> a:token)
+    {if(a.size()>0){  premier.push_back(a[0]); }}
+    return premier;
+}
+
+vector<string> Regle::get_suivant()
+{
+    vector<string> initialisation;
+    for(vector<string> a:token)
+    {if(a.size()>0){cout<<endl<<a[a.size()-1]<<" ";
+
+            if(!a[a.size()-1].compare("#")){
+
+                cout<<a[a.size()-1]<<"="<<"#"<<endl;
+                initialisation.push_back("$");
+            }
+            else
+            {
+                cout<<"ajoue "<<a[a.size()-1]<<endl;
+                initialisation.push_back(a[a.size()-1]);
+            }
+
+        }}
+    return initialisation;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------   recursif/nn_recursif    ----------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+int Regle::recursif()
+{int cmp=0;for(vector<string> ligne:token){ if(!ligne[0].compare(Nom)){ cmp++;}}return cmp;}
+
+vector<string> Regle::nn_recursif()
+{for(vector<string> R:token){if(R[0].compare(Nom)){return R;}}}

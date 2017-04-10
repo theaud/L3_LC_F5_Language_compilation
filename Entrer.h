@@ -11,15 +11,11 @@ using namespace std;
 
 class Entrer {
 public :
-    vector<string> Texte;
-
-public:
-
-
 
     static string lirestr(FILE *file);
-    void lecture(const char * adresse);
-     void afficher();
+    static vector<string> lecture(const char * adresse);
+
+
 private:
 
 };
