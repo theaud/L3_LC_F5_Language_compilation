@@ -28,7 +28,7 @@ vector<string> Entrer::lecture(const char * addresse)
     fstream fichier(addresse);
 
     if ( !fichier )
-        cout << "fichier inexistant";
+    { cout << "fichier inexistant";}
     else
     { bool continuer = true;
 
@@ -42,6 +42,8 @@ vector<string> Entrer::lecture(const char * addresse)
                 Texte.pop_back();//on la retire du tableau
         }
     }
+
+
     return Texte;
  }
 

@@ -16,9 +16,11 @@ public:
     Grammaire Grammaire_brute;
     Grammaire Gramairre_derecurssiver;
     vector<premier_suivant> premier;
-   vector<premier_suivant> suivant;
+    vector<premier_suivant> suivant;
     vector<string> terminaux;
     vector<string> non_terminaux;
+    vector<vector<string>> table_d_analyse;
+
     Structure();
 
     vector<string> afficher_premier();

@@ -9,12 +9,12 @@ Grammaire::Grammaire()
 
 }
 
-
 Grammaire::Grammaire(const char *Fichier)
 {
 
     Grammaire(Entrer::lecture(Fichier));
 
+    cout<<"test 1"<<endl;
 }
 
 Grammaire::Grammaire(vector<string> grammaire_brut)
@@ -25,7 +25,7 @@ Grammaire::Grammaire(vector<string> grammaire_brut)
 
         List_Regle.push_back(R1);
     }
-
+    cout<<"test 2"<<endl;
 }
 
 void Grammaire::creation(vector<string> grammaire_brut)
@@ -35,6 +35,7 @@ void Grammaire::creation(vector<string> grammaire_brut)
     //    cerr<<"void Grammaire::creation(vector<string> grammaire_brut) supprimer k'utilisation des espace comme separateur";
 
         Regle R1=Regle(parser);
+
         List_Regle.push_back(R1);
     }
 }
@@ -81,7 +82,6 @@ vector<premier_suivant> Grammaire::get_suivant(vector<string> terminaux)
     2. S’il y a une production AαBβ, le contenu de PREMIER(β) excepté ε, est ajouté à SUIVANT(B).
     3. S’il existe une production AαB ou une production AαBβ telle que PREMIER(β) contient ε (c.a.d. β ε), les éléments de SUIVANT(A) sont ajoutés à SUIVANT(B).
 */
-
     //initialisation de la liste
     for(Regle a:List_Regle)
     {
@@ -243,4 +243,30 @@ Grammaire Grammaire::Derecusivite_gauche()
     }
 
     return derecursiver;
+}
+
+vector< vector<vector<string>>> Grammaire::table_d_analyse(vector<premier_suivant> premier, vector<string> terminaux,vector<string> non_terminaux)
+{
+    vector< vector<vector<string>>> table_d_analyse;
+
+    for(string colonne:terminaux)
+    {vector<vector<string>> ligne_tableau;
+     vector<string> case_tableau;
+        for(string ligne:non_terminaux)
+        {bool test= true;
+            for(premier_suivant test:premier)
+
+
+
+
+            if(test)
+                {case_tableau.push_back("");}
+        }
+
+        ligne_tableau.push_back(case_tableau);
+        table_d_analyse.push_back(ligne_tableau);
+    }
+
+
+    return table_d_analyse;
 }

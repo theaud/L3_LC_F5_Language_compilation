@@ -1,5 +1,3 @@
-
-
 #include "Structure.h"
 #include "Camille.h"
 #include "Entrer.h"
@@ -14,7 +12,7 @@ Structure::Structure()
         etape1();
 
     //etape 2 :suppression recursiviter a gauche
-        etape2();
+       etape2();
 
     //etape 3 :Calcul premier et suivant
         etape3();
@@ -40,9 +38,14 @@ return ;
 bool Structure::etape1()
 {
     cout<<endl<<"----------etape 1 :initialisation de la gramaire------------"<<endl;
+    Utilitaire::affichageln(Entrer::lecture("F5G0.txt"));
+
+
     Grammaire_brute.creation(Entrer::lecture("F5G0.txt"));
 
-   // Grammaire_brute.afficher("L3_LC_F5_sortie_Gramaire_brut.txt");
+    cout<<"test 3"<<endl;
+    Grammaire_brute.afficher("L3_LC_F5_1_sortie_Gramaire_brut.txt");
+
 
     return true;
 }
@@ -53,7 +56,7 @@ bool Structure::etape2()
 
     Gramairre_derecurssiver=Grammaire_brute.Derecusivite_gauche();
 
-   // Gramairre_derecurssiver.afficher("L3_LC_F5_sortie_Gramaire_derecurssiver.txt");
+    Gramairre_derecurssiver.afficher("L3_LC_F5_2_sortie_Gramaire_derecurssiver.txt");
 
 
     return true;
@@ -63,16 +66,16 @@ bool Structure::etape3()
 
     non_terminaux=Gramairre_derecurssiver.get_non_terminaux();
     cout<<"etat non terminaux : ";
-   // Utilitaire::ecriture_fichier("L3_LC_F5_sortie_non_terminaux.txt",non_terminaux);
+     Utilitaire::ecriture_fichier("L3_LC_F5_3_sortie_non_terminaux.txt",non_terminaux);
 
     terminaux=Gramairre_derecurssiver.get_terminaux(non_terminaux);
     cout<<endl<<"etat terminaux : ";
-  //  Utilitaire::ecriture_fichier("L3_LC_F5_sortie_terminaux.txt",terminaux);
+   Utilitaire::ecriture_fichier("L3_LC_F5_4_sortie_terminaux.txt",terminaux);
 
     premier=Gramairre_derecurssiver.get_premier(terminaux);
 
 
-   // Utilitaire::ecriture_fichier("L3_LC_F5_sortie_premier.txt",afficher_premier());
+   Utilitaire::ecriture_fichier("L3_LC_F5_5_sortie_premier.txt",afficher_premier());
 
     suivant=Gramairre_derecurssiver.get_suivant(terminaux);
     for(premier_suivant a: suivant)
@@ -83,8 +86,8 @@ bool Structure::etape3()
         }
         cout<<endl;
     }
-
-    Utilitaire::ecriture_fichier("L3_LC_F5_sortie_suivant.txt",afficher_suivant());
+    cout<<endl<<"rechercher les suivant"<<endl;
+    Utilitaire::ecriture_fichier("L3_LC_F5_6_sortie_suivant.txt",afficher_suivant());
 
 
 
@@ -125,6 +128,7 @@ vector<string> Structure::afficher_premier()
 }
 vector<string> Structure::afficher_suivant()
 {vector<string> returned;
+
     for(premier_suivant a:suivant)
     {string tmp=" Pour "+a.Nom;
         if(a.Liste_element.size()==0){tmp+=" il n'y a pas de suivant";}
@@ -133,5 +137,6 @@ vector<string> Structure::afficher_suivant()
             for(string z:a.Liste_element)
             {tmp+=z+" ";}
         }
+        returned.push_back(tmp);
     }   return returned;
 }

@@ -18,6 +18,7 @@ public :
     Grammaire(const char *Fichier);
     Grammaire(vector<string> grammaire_brut);
 
+
     void afficher(const char *Fichier);
     bool test(vector<premier_suivant> actuel,vector<string> terminaux);
     vector<premier_suivant> get_premier(vector<string> terminaux);
@@ -25,7 +26,7 @@ public :
     vector<string> get_terminaux(vector<string> non_terminaux);
     vector<string> get_non_terminaux();
     premier_suivant selection(vector<premier_suivant> liste,string nom);
-
+    vector<vector<vector<string>>> Grammaire::table_d_analyse(vector<premier_suivant> premier, vector<string> terminaux,vector<string> non_terminaux);
     Grammaire Derecusivite_gauche();
 };
 
