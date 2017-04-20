@@ -255,12 +255,14 @@ vector< vector<vector<string>>> Grammaire::table_d_analyse(vector<premier_suivan
         for(string ligne:non_terminaux)
         {bool test= true;
             for(premier_suivant test:premier)
+            {
+                //en cour
+            }
 
 
 
 
-            if(test)
-                {case_tableau.push_back("");}
+
         }
 
         ligne_tableau.push_back(case_tableau);
