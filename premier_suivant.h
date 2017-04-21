@@ -16,8 +16,8 @@ public:
     premier_suivant(string nom,vector<string> liste_element);
 
     premier_suivant(string nom,string element);
-
-
+    void afficher();
+    bool possede(string tester);
 };
 
 

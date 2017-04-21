@@ -43,7 +43,7 @@ bool Structure::etape1()
 
     Grammaire_brute.creation(Entrer::lecture("F5G0.txt"));
 
-    cout<<"test 3"<<endl;
+
     Grammaire_brute.afficher("L3_LC_F5_1_sortie_Gramaire_brut.txt");
 
 
@@ -71,6 +71,7 @@ bool Structure::etape3()
     terminaux=Gramairre_derecurssiver.get_terminaux(non_terminaux);
     cout<<endl<<"etat terminaux : ";
    Utilitaire::ecriture_fichier("L3_LC_F5_4_sortie_terminaux.txt",terminaux);
+    terminaux.push_back("$");
 
     premier=Gramairre_derecurssiver.get_premier(terminaux);
 
@@ -78,14 +79,7 @@ bool Structure::etape3()
    Utilitaire::ecriture_fichier("L3_LC_F5_5_sortie_premier.txt",afficher_premier());
 
     suivant=Gramairre_derecurssiver.get_suivant(terminaux);
-    for(premier_suivant a: suivant)
-    {cout<<a.Nom<<" = ";
-        for(string z:a.Liste_element)
-        {
-            cout<<z<<" ";
-        }
-        cout<<endl;
-    }
+
     cout<<endl<<"rechercher les suivant"<<endl;
     Utilitaire::ecriture_fichier("L3_LC_F5_6_sortie_suivant.txt",afficher_suivant());
 
@@ -96,10 +90,10 @@ bool Structure::etape3()
 }
 bool Structure::etape4()
 {
-
-
     cout<<endl<<"----------etape 4 :construction table d'analyse------------"<<endl;
+    vector<Regle> table_d_analyse=Gramairre_derecurssiver.table_d_analyse(premier,terminaux,non_terminaux);
 
+    //affichage
     return true;
 }
 bool Structure::etape5()

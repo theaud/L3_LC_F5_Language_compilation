@@ -26,8 +26,9 @@ public :
     vector<string> get_terminaux(vector<string> non_terminaux);
     vector<string> get_non_terminaux();
     premier_suivant selection(vector<premier_suivant> liste,string nom);
-    vector<vector<vector<string>>> table_d_analyse(vector<premier_suivant> premier, vector<string> terminaux,vector<string> non_terminaux);
+    vector<Regle> table_d_analyse(vector<premier_suivant> premier, vector<string> terminaux,vector<string> non_terminaux);
     Grammaire Derecusivite_gauche();
+    Regle Grammaire::select(string nom);
 };
 
 

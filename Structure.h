@@ -19,7 +19,7 @@ public:
     vector<premier_suivant> suivant;
     vector<string> terminaux;
     vector<string> non_terminaux;
-    vector<vector<string>> table_d_analyse;
+    vector<Regle> table_d_analyse;
 
     Structure();
 

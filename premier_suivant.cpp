@@ -20,3 +20,24 @@ premier_suivant::premier_suivant(string nom,string element)
 
 }
 
+void premier_suivant::afficher()
+{
+    cout<<Nom<<" : ";
+    for(string valeur:Liste_element)
+    {
+        cout<<valeur<<" ";
+    }
+    cout<<endl;
+
+}
+
+bool premier_suivant::possede(string tester)
+{
+    for(string a:Liste_element)
+    {
+        if(a.compare(tester)==0){ return true;}
+    }
+
+    cout<<endl <<"possede_vide() a faire detecter la presence de # "<<endl;
+    return false;
+}

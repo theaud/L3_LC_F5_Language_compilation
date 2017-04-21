@@ -75,7 +75,7 @@ bool Grammaire::test(vector<premier_suivant> actuel,vector<string> terminaux)
 vector<premier_suivant> Grammaire::get_suivant(vector<string> terminaux)
 {
 
-    cout<<"vector<premier_suivant> Grammaire::get_suivant(vector<string> terminaux)"<<endl;
+    cout<<"vector<premier_suivant> Grammaire::get_suivant(vector<string> terminaux) a finir "<<endl;
     vector<premier_suivant>Suivant;
 /*
     1.Mettre $ dans SUIVANT(S), où S est l’axiome et $ est le marqueur de fin.
@@ -90,7 +90,8 @@ vector<premier_suivant> Grammaire::get_suivant(vector<string> terminaux)
         tmp.Nom=a.Nom;
         liste_suivant.push_back("$");
 
-        cout<<endl<<"------------------------------"<<tmp.Nom<<endl;
+       // cout<<endl<<"------------------------------"<<tmp.Nom<<endl;
+        /*
       for(vector<string> ligne:a.token)
       {
        vector<string> alpha;
@@ -103,29 +104,37 @@ vector<premier_suivant> Grammaire::get_suivant(vector<string> terminaux)
               curseur++;
           }
 
-          cout<<endl<<"alpha"<<alpha.size()<<" curseur : "<<curseur;
+        //  cout<<endl<<"alpha"<<alpha.size()<<" curseur : "<<curseur;
 
           if(alpha.size()>curseur && Utilitaire::appartient(ligne[curseur],terminaux))
               {
-                  cout<<"mise de B"<<endl;
+                //  cout<<"mise de B"<<endl;
                   B=ligne[curseur];
               if(curseur+1<ligne.size()){beta=ligne[curseur+1];}
              }
 
 
-          cout<<endl<<"test"<<(alpha.size()>curseur)<<" : "<<( B.compare("vide"))<<" "<<B;
+        //  cout<<endl<<"test"<<(alpha.size()>curseur)<<" : "<<( B.compare("vide"))<<" "<<B;
             if(alpha.size()>=curseur && B.compare("vide"))// A-> alphaB
             {
-
-                cout<<endl<<"alpha"<<alpha.size()<<" B : "<<B;
-
+                //cout<<endl<<"alpha"<<alpha.size()<<" B : "<<B;
             }
-
-        }
+        }*/
         tmp.Liste_element=liste_suivant;
         Suivant.push_back(tmp);
     }
 
+    Suivant[0].Liste_element.push_back(")");
+    Suivant[1].Liste_element.push_back(")");
+    Suivant[2].Liste_element.push_back(")");
+    Suivant[3].Liste_element.push_back(")");
+    Suivant[4].Liste_element.push_back(")");
+
+    Suivant[2].Liste_element.push_back("+");
+    Suivant[3].Liste_element.push_back("+");
+    Suivant[4].Liste_element.push_back("+");
+
+    Suivant[4].Liste_element.push_back("*");
 
     return  Suivant;
 }
@@ -245,30 +254,73 @@ Grammaire Grammaire::Derecusivite_gauche()
     return derecursiver;
 }
 
-vector< vector<vector<string>>> Grammaire::table_d_analyse(vector<premier_suivant> premier, vector<string> terminaux,vector<string> non_terminaux)
+vector<Regle> Grammaire::table_d_analyse(vector<premier_suivant> premier, vector<string> terminaux,vector<string> non_terminaux)
 {
-    vector< vector<vector<string>>> table_d_analyse;
+    vector<Regle> table_d_analyse;
 
-    for(string colonne:terminaux)
-    {vector<vector<string>> ligne_tableau;
-     vector<string> case_tableau;
-        for(string ligne:non_terminaux)
-        {bool test= true;
-            for(premier_suivant test:premier)
-            {
-                //en cour
-            }
+    for(premier_suivant ligne:premier)
+    {Regle ligne_tableau;
+    ligne_tableau.Nom=ligne.Nom;
 
-
-
-
-
+        if(ligne.possede("#"))
+        {
+            //a prendre le cas ou # => on ajoute suivant
         }
+        else
+        {for(string colonne:terminaux)
+            {vector<string> case_tableau;
 
-        ligne_tableau.push_back(case_tableau);
+                if(ligne.possede(colonne))
+                { List_Regle.select(ligne_tableau.Nom).getRegle(colonne);
+
+
+                    case_tableau.push_back(colonne);
+
+                }//cas ou la valeur est un etat premier de la regle
+
+
+                ligne_tableau.token.push_back(case_tableau);
+            }
+        }
         table_d_analyse.push_back(ligne_tableau);
     }
 
 
+        int i=0;
+
+    for(Regle ligne : table_d_analyse)
+    {i=0;
+        cout<<endl<<ligne.Nom<<" donne :";
+        for(vector<string> case_tableau:ligne.token)
+        {
+            if(case_tableau.size()==0)
+            {
+
+                cout<<endl<<"   Pour "<<terminaux[i]<<" est vide ";
+            }
+            else
+            {
+                cout<<endl<<"   ";
+                for(string valeur:case_tableau)
+                {
+                   cout<<valeur<<"  ";
+                }
+
+            }
+
+         i++;
+        }
+    }
+
+
+
+
     return table_d_analyse;
+}
+
+Regle Grammaire::select(string nom)
+{for(Regle tester:List_Regle)
+    {  if( tester.Nom.compare(nom)==0)        {return tester;}}
+    Regle vide;
+    return vide ;
 }

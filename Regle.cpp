@@ -112,3 +112,18 @@ int Regle::recursif()
 
 vector<string> Regle::nn_recursif()
 {for(vector<string> R:token){if(R[0].compare(Nom)){return R;}}}
+
+
+vector<string> Regle::getRegle(string valeur_initiale)
+{
+    for(vector<string> tester:token)
+    {
+        if(tester.size()>0 && tester[0].compare(valeur_initiale)==0)
+        {
+            return tester;
+        }
+    }
+
+    vector<string> vide;
+    return vide ;
+}
