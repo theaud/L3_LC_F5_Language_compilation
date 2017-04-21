@@ -19,12 +19,15 @@ public:
     vector<premier_suivant> suivant;
     vector<string> terminaux;
     vector<string> non_terminaux;
-    vector<Regle> table_d_analyse;
+    Grammaire table_d_analyse;
 
     Structure();
 
     vector<string> afficher_premier();
     vector<string> afficher_suivant();
+    vector<string> afficher_table_d_analyse(Grammaire table_d_analyse);
+    vector<string> affichage_non_terminaux(vector<string> non_terminaux);
+    vector<string> affichage_terminaux(vector<string> terminaux);
 
     bool etape1();
     bool etape2();

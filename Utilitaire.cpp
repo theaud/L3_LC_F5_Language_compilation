@@ -8,18 +8,7 @@
 #include "include.h"
 
 
-void Utilitaire::debug(string text)
-{
-    if(DEBUG ==true)
-    {
-        cout<< text;
-    }
-}
-void Utilitaire::debugln(string text)
-{
-    if(DEBUG ==  true)
-    { cout<< text<<endl;}
-}
+
 
 bool Utilitaire::appartient(string element_tester,vector<string>list_tester)
 {for(string a:list_tester)
@@ -41,7 +30,7 @@ void Utilitaire::affichageln( vector<string> entrer){ for(string ligne:entrer){c
 void Utilitaire::affichage( vector<string> entrer){ for(string ligne:entrer){cout<<ligne<<" ";}cout<<endl;}
 
 void Utilitaire::ecriture_fichier(const char *Fichier, vector<string> entrer)
-{ofstream sortie(Fichier);    for(string ligne:entrer){sortie<<ligne<<endl;cout<<ligne<<endl;}sortie<<endl;cout<<endl;}
+{ofstream sortie(Fichier);for(string ligne:entrer){sortie<<ligne<<endl;cout<<ligne<<endl;}sortie<<endl;cout<<endl;}
 
 vector<string> Utilitaire::extend(string valeur){vector <string> returned;returned.push_back(valeur);    return returned;}
 

@@ -65,16 +65,15 @@ bool Structure::etape3()
 { cout<<endl<<"----------etape 3 :Calcul premier et suivant------------"<<endl;
 
     non_terminaux=Gramairre_derecurssiver.get_non_terminaux();
-    cout<<"etat non terminaux : ";
-     Utilitaire::ecriture_fichier("L3_LC_F5_3_sortie_non_terminaux.txt",non_terminaux);
+
+     Utilitaire::ecriture_fichier("L3_LC_F5_3_sortie_non_terminaux.txt",affichage_non_terminaux(non_terminaux));
 
     terminaux=Gramairre_derecurssiver.get_terminaux(non_terminaux);
-    cout<<endl<<"etat terminaux : ";
-   Utilitaire::ecriture_fichier("L3_LC_F5_4_sortie_terminaux.txt",terminaux);
+
+   Utilitaire::ecriture_fichier("L3_LC_F5_4_sortie_terminaux.txt",affichage_terminaux(terminaux));
     terminaux.push_back("$");
 
     premier=Gramairre_derecurssiver.get_premier(terminaux);
-
 
    Utilitaire::ecriture_fichier("L3_LC_F5_5_sortie_premier.txt",afficher_premier());
 
@@ -83,17 +82,17 @@ bool Structure::etape3()
     cout<<endl<<"rechercher les suivant"<<endl;
     Utilitaire::ecriture_fichier("L3_LC_F5_6_sortie_suivant.txt",afficher_suivant());
 
-
-
-
     return true;
 }
 bool Structure::etape4()
 {
-    cout<<endl<<"----------etape 4 :construction table d'analyse------------"<<endl;
-    vector<Regle> table_d_analyse=Gramairre_derecurssiver.table_d_analyse(premier,terminaux,non_terminaux);
 
-    //affichage
+     table_d_analyse=Gramairre_derecurssiver.table_d_analyse(premier,suivant,terminaux,non_terminaux);
+
+
+    cout<<endl<<"----------etape 4 :construction table d'analyse------------"<<endl;
+    Utilitaire::ecriture_fichier("L3_LC_F5_7_table_d_analyse.txt",afficher_table_d_analyse(table_d_analyse));
+
     return true;
 }
 bool Structure::etape5()
@@ -104,33 +103,92 @@ bool Structure::etape5()
 
     return true;
 }
-
 vector<string> Structure::afficher_premier()
 {vector<string> returned;
-
+    returned.push_back("Affichage les premiers");
     for(premier_suivant a:premier)
-    {string tmp=" Pour "+a.Nom;
+    {string tmp=" Pour\t"+a.Nom+"\t";
         if(a.Liste_element.size()==0){tmp+=" il n'y a pas de premier";}
         else if(a.Liste_element.size()==1){tmp+=" le premier est  : "+a.Liste_element[0];}
-        else {tmp+=" les premiers sont : ";
-            for(string z:a.Liste_element)
-            {tmp+=z+" ";}
+        else {tmp+=" les premiers sont : [  ";
+
+            for(int i=0;i<a.Liste_element.size();i++)
+            {
+                if(i+1<a.Liste_element.size())
+                {tmp+=a.Liste_element[i]+"\t~\t";}
+                else
+                {tmp+=a.Liste_element[i];}
+            }
         }
+        tmp+="  ]";
         returned.push_back(tmp);
     }
     return returned;
 }
 vector<string> Structure::afficher_suivant()
 {vector<string> returned;
-
+    returned.push_back("Affichage les suivants");
     for(premier_suivant a:suivant)
-    {string tmp=" Pour "+a.Nom;
+    {string tmp=" Pour\t"+a.Nom+"\t";
         if(a.Liste_element.size()==0){tmp+=" il n'y a pas de suivant";}
         else if(a.Liste_element.size()==1){tmp+=" le suivant est  : "+a.Liste_element[0];}
-        else {tmp+=" les suivants sont : ";
-            for(string z:a.Liste_element)
-            {tmp+=z+" ";}
+        else {tmp+=" les suivants sont :\t[  ";
+            for(int i=0;i<a.Liste_element.size();i++)
+            {
+                if(i+1<a.Liste_element.size())
+                {tmp+=a.Liste_element[i]+"\t~\t";}
+                else
+                {tmp+=a.Liste_element[i];}
+            }
         }
+        tmp+="  ]";
         returned.push_back(tmp);
     }   return returned;
+}
+vector<string> Structure::afficher_table_d_analyse(Grammaire table_d_analyse)
+{
+    vector<string> retour;
+    string tmp="";
+    for(string a : terminaux)
+    {
+        if(a.compare("#"))
+            tmp+=a+"\t";
+    }
+    retour.push_back("\t"+tmp);
+
+
+    for(Regle ligne : table_d_analyse.List_Regle)
+    {int i=0;tmp=ligne.Nom;
+
+        for(vector<string> case_tableau:ligne.token)
+        {
+            if(case_tableau.size()==0)
+            { if(terminaux[i].compare("#")!=0)
+                    tmp+="-";
+            }
+            else
+            {for(string valeur:case_tableau)                {tmp+=valeur;}}
+            tmp+="\t";
+            i++;
+        }
+       retour.push_back(tmp);
+    }
+    return retour;
+}
+
+vector<string> Structure::affichage_non_terminaux(vector<string> non_terminaux)
+{vector<string> a;
+    string returned="Etat non terminaux : [";
+    for(int i=0;i<non_terminaux.size();i++)    { returned+="\t"+non_terminaux[i]; }
+    returned+="\t]";
+    a.push_back(returned);
+    return a;
+}
+vector<string> Structure::affichage_terminaux(vector<string> terminaux)
+{vector<string> a;
+    string returned="Etat terminaux : [";
+    for(int i=0;i<terminaux.size();i++)    { returned+="\t"+terminaux[i]; }
+    returned+="\t]";
+    a.push_back(returned);
+    return a;
 }

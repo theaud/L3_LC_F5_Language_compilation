@@ -21,6 +21,7 @@ public:
     int recursif();
     vector<string> nn_recursif();
     vector<string> getRegle(string valeur_initiale);
+
 };
 
 

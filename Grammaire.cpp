@@ -14,7 +14,6 @@ Grammaire::Grammaire(const char *Fichier)
 
     Grammaire(Entrer::lecture(Fichier));
 
-    cout<<"test 1"<<endl;
 }
 
 Grammaire::Grammaire(vector<string> grammaire_brut)
@@ -25,7 +24,6 @@ Grammaire::Grammaire(vector<string> grammaire_brut)
 
         List_Regle.push_back(R1);
     }
-    cout<<"test 2"<<endl;
 }
 
 void Grammaire::creation(vector<string> grammaire_brut)
@@ -242,8 +240,7 @@ Grammaire Grammaire::Derecusivite_gauche()
 
             }
             else
-            {
-                cout<<endl<<R.Nom<<" "<<R.token.size()<<" "<<nb_recursiviter<<endl;
+            {cout<<endl<<R.Nom<<" "<<R.token.size()<<" "<<nb_recursiviter<<endl;
               cout<<"La grammaire entre comporte une regle qui ne peut pas etre derecursiver";
               cout<< "(tous les element commence par le nom de cette regle"<<endl;
               exit(1);
@@ -254,65 +251,41 @@ Grammaire Grammaire::Derecusivite_gauche()
     return derecursiver;
 }
 
-vector<Regle> Grammaire::table_d_analyse(vector<premier_suivant> premier, vector<string> terminaux,vector<string> non_terminaux)
-{
-    vector<Regle> table_d_analyse;
+Grammaire Grammaire::table_d_analyse(vector<premier_suivant> premier,vector<premier_suivant> suivant, vector<string> terminaux,vector<string> non_terminaux)
+{ cout<<endl <<"possede_vide() a faire detecter la presence de # ";
+
+    Grammaire table_d_analyse;
 
     for(premier_suivant ligne:premier)
     {Regle ligne_tableau;
     ligne_tableau.Nom=ligne.Nom;
 
-        if(ligne.possede("#"))
-        {
-            //a prendre le cas ou # => on ajoute suivant
-        }
-        else
-        {for(string colonne:terminaux)
+            for (string colonne:terminaux)
             {vector<string> case_tableau;
 
-                if(ligne.possede(colonne))
-                { List_Regle.select(ligne_tableau.Nom).getRegle(colonne);
+                if (ligne.possede(colonne) && colonne.compare("#")!=0)//cas ou la valeur est un etat premier de la regle
+                {vector<string> current=select(ligne_tableau.Nom).getRegle(colonne);
+                case_tableau=current;
+                }
+                else if (ligne.possede(colonne) && colonne.compare("#")==0)
+                    {premier_suivant z;
+                       for(premier_suivant a:suivant)
+                        {if(a.Nom.compare(ligne.Nom)==0){a=z;}}
 
+                        for(string tester:z.Liste_element)
+                            {case_tableau.push_back(tester);
 
-                    case_tableau.push_back(colonne);
+                            }
 
-                }//cas ou la valeur est un etat premier de la regle
+                    }
+
 
 
                 ligne_tableau.token.push_back(case_tableau);
             }
-        }
-        table_d_analyse.push_back(ligne_tableau);
+
+        table_d_analyse.List_Regle.push_back(ligne_tableau);
     }
-
-
-        int i=0;
-
-    for(Regle ligne : table_d_analyse)
-    {i=0;
-        cout<<endl<<ligne.Nom<<" donne :";
-        for(vector<string> case_tableau:ligne.token)
-        {
-            if(case_tableau.size()==0)
-            {
-
-                cout<<endl<<"   Pour "<<terminaux[i]<<" est vide ";
-            }
-            else
-            {
-                cout<<endl<<"   ";
-                for(string valeur:case_tableau)
-                {
-                   cout<<valeur<<"  ";
-                }
-
-            }
-
-         i++;
-        }
-    }
-
-
 
 
     return table_d_analyse;
@@ -324,3 +297,4 @@ Regle Grammaire::select(string nom)
     Regle vide;
     return vide ;
 }
+
