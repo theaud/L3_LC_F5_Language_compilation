@@ -79,7 +79,6 @@ bool Structure::etape3()
 
     suivant=Gramairre_derecurssiver.get_suivant(terminaux);
 
-    cout<<endl<<"rechercher les suivant"<<endl;
     Utilitaire::ecriture_fichier("L3_LC_F5_6_sortie_suivant.txt",afficher_suivant());
 
     return true;

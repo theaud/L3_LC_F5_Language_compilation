@@ -73,7 +73,7 @@ bool Grammaire::test(vector<premier_suivant> actuel,vector<string> terminaux)
 vector<premier_suivant> Grammaire::get_suivant(vector<string> terminaux)
 {
 
-    cout<<"vector<premier_suivant> Grammaire::get_suivant(vector<string> terminaux) a finir "<<endl;
+    cout<<"vector<premier_suivant> Grammaire::get_suivant(vector<string> terminaux) a finir &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& "<<endl;
     vector<premier_suivant>Suivant;
 /*
     1.Mettre $ dans SUIVANT(S), où S est l’axiome et $ est le marqueur de fin.
@@ -252,7 +252,7 @@ Grammaire Grammaire::Derecusivite_gauche()
 }
 
 Grammaire Grammaire::table_d_analyse(vector<premier_suivant> premier,vector<premier_suivant> suivant, vector<string> terminaux,vector<string> non_terminaux)
-{ cout<<endl <<"possede_vide() a faire detecter la presence de # ";
+{ cout<<endl <<"possede_vide() a faire detecter la presence de # &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& ";
 
     Grammaire table_d_analyse;
 
@@ -277,6 +277,7 @@ Grammaire Grammaire::table_d_analyse(vector<premier_suivant> premier,vector<prem
 
                             }
 
+
                     }
 
 
@@ -298,3 +299,52 @@ Regle Grammaire::select(string nom)
     return vide ;
 }
 
+vector<premier_suivant> Grammaire::get_suivant2(vector<string> terminaux)
+{
+vector<string> suivant;
+
+suivant.push_back("$");
+
+
+for(Regle regles:List_Regle)
+{
+    for(vector<string> valeur : regles.token)
+    {
+        if(char *index = strstr(valeur.get().c_str(),regles.Nom))
+        {
+        index += regle.getnom().size();
+        if(*index==0 && regle.getnom()!=regles.get().getnom())
+            {
+            suivant += getsuivant(regles.get());
+            }
+
+        if(*index!=0 && *index!='\'')
+            {
+            string str;
+            str += index[0];
+            if(index[1]=='\'')
+                {str += index[1];}
+
+            int n = regles.indexOf(str,comparernom);
+
+            if(n>=0)
+                {
+                suivant += getpremier(regles.at(n));
+                if(suivant.contains("#"))
+                    {
+                    suivant.removeAll("#");
+                    suivant += getsuivant(regles.at(n));
+                    }
+                }
+            else if(str.size()>0)
+                {suivant.push_back(str);}
+            }
+        }
+    }
+}
+
+    //retirer les doublons dans suivant
+    suivant.unique();
+
+return suivant;
+}
