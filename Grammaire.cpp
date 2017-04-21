@@ -310,12 +310,12 @@ for(Regle regles:List_Regle)
 {
     for(vector<string> valeur : regles.token)
     {
-        if(char *index = strstr(valeur.get().c_str(),regles.Nom))
+        if(char *index = strstr(valeur,regles.Nom))
         {
         index += regle.getnom().size();
         if(*index==0 && regle.getnom()!=regles.get().getnom())
             {
-            suivant += getsuivant(regles.get());
+            suivant += getsuivant(valeur);
             }
 
         if(*index!=0 && *index!='\'')
@@ -329,11 +329,11 @@ for(Regle regles:List_Regle)
 
             if(n>=0)
                 {
-                suivant += getpremier(regles.at(n));
+                suivant += getpremier(regles.token[n]);
                 if(suivant.contains("#"))
                     {
                     suivant.removeAll("#");
-                    suivant += getsuivant(regles.at(n));
+                    suivant += getsuivant(regles.token[n]);
                     }
                 }
             else if(str.size()>0)
@@ -342,6 +342,8 @@ for(Regle regles:List_Regle)
         }
     }
 }
+//https://github.com/theaud/E4Language_compilation/blob/master/E04grammaire.cpp
+
 
     //retirer les doublons dans suivant
     suivant.unique();
