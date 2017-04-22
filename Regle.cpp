@@ -83,26 +83,6 @@ vector<string> Regle::get_premier()
     return premier;
 }
 
-vector<string> Regle::get_suivant()
-{
-    vector<string> initialisation;
-    for(vector<string> a:token)
-    {if(a.size()>0){cout<<endl<<a[a.size()-1]<<" ";
-
-            if(!a[a.size()-1].compare("#")){
-
-                cout<<a[a.size()-1]<<"="<<"#"<<endl;
-                initialisation.push_back("$");
-            }
-            else
-            {
-                cout<<"ajoue "<<a[a.size()-1]<<endl;
-                initialisation.push_back(a[a.size()-1]);
-            }
-
-        }}
-    return initialisation;
-}
 
 //----------------------------------------------------------------------------------------------------------------------
 //-----------------------------------   recursif/nn_recursif    ----------------------------------------------------------------

@@ -1,9 +1,9 @@
 #include <vector>
 #include <malloc.h>
-#include "include.h"
+
 #include "Regle.h"
 #include "Entrer.h"
-#include "Grammaire.h"
+#include "L3_LC_F5_Grammaire.h"
 #include "Structure.h"
 
 

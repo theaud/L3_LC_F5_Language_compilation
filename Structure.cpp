@@ -1,6 +1,7 @@
 #include "Structure.h"
-#include "Camille.h"
+
 #include "Entrer.h"
+#include "Utilitaire.h"
 
 
 Structure::Structure()
@@ -77,7 +78,7 @@ bool Structure::etape3()
 
    Utilitaire::ecriture_fichier("L3_LC_F5_5_sortie_premier.txt",afficher_premier());
 
-    suivant=Gramairre_derecurssiver.get_suivant(terminaux);
+    suivant=Gramairre_derecurssiver.get_suivant(premier,terminaux,non_terminaux);
 
     Utilitaire::ecriture_fichier("L3_LC_F5_6_sortie_suivant.txt",afficher_suivant());
 
@@ -130,8 +131,8 @@ vector<string> Structure::afficher_suivant()
     for(premier_suivant a:suivant)
     {string tmp=" Pour\t"+a.Nom+"\t";
         if(a.Liste_element.size()==0){tmp+=" il n'y a pas de suivant";}
-        else if(a.Liste_element.size()==1){tmp+=" le suivant est  : "+a.Liste_element[0];}
-        else {tmp+=" les suivants sont :\t[  ";
+        else if(a.Liste_element.size()==1){tmp+=" le suivant est  : [\t"+a.Liste_element[0];}
+        else {tmp+=" les suivants sont : [\t";
             for(int i=0;i<a.Liste_element.size();i++)
             {
                 if(i+1<a.Liste_element.size())
@@ -144,7 +145,7 @@ vector<string> Structure::afficher_suivant()
         returned.push_back(tmp);
     }   return returned;
 }
-vector<string> Structure::afficher_table_d_analyse(Grammaire table_d_analyse)
+vector<string> Structure::afficher_table_d_analyse(L3_LC_F5_Grammaire table_d_analyse)
 {
     vector<string> retour;
     string tmp="";

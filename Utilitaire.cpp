@@ -1,12 +1,6 @@
-//
-// Created by mathieu on 03/03/2017.
-//
-
-#include <vector>
 #include <sstream>
 #include <fstream>
-#include "include.h"
-
+#include "Utilitaire.h"
 
 
 

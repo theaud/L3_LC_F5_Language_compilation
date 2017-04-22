@@ -3,8 +3,10 @@
 #ifndef L3_LC_F5_LANGUAGE_COMPILATION_REGLE_H
 #define L3_LC_F5_LANGUAGE_COMPILATION_REGLE_H
 
+#include <iostream>
 #include <vector>
-#include "include.h"
+using namespace std;
+
 
 class Regle {
 public:
@@ -17,7 +19,7 @@ public:
     Regle(string nom,string entrer);
     vector<string> afficher();
     vector<string> get_premier();
-    vector<string> get_suivant();
+
     int recursif();
     vector<string> nn_recursif();
     vector<string> getRegle(string valeur_initiale);

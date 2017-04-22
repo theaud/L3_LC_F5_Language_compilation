@@ -1,24 +1,12 @@
-#include <cstdlib>
-#include <fstream>
-#include "Grammaire.h"
-#include "Entrer.h"
+#include "L3_LC_F5_Grammaire.h"
 
 
-Grammaire::Grammaire()
-{
+L3_LC_F5_Grammaire::L3_LC_F5_Grammaire(){}
 
-}
+L3_LC_F5_Grammaire::L3_LC_F5_Grammaire(const char *Fichier){    L3_LC_F5_Grammaire(Entrer::lecture(Fichier));}
 
-Grammaire::Grammaire(const char *Fichier)
-{
-
-    Grammaire(Entrer::lecture(Fichier));
-
-}
-
-Grammaire::Grammaire(vector<string> grammaire_brut)
-{
-    for(string ligne:grammaire_brut)
+L3_LC_F5_Grammaire::L3_LC_F5_Grammaire(vector<string> grammaire_brut)
+{ for(string ligne:grammaire_brut)
     { vector<string> parser=Utilitaire::parse( ligne);
        Regle R1=Regle(parser);
 
@@ -26,11 +14,11 @@ Grammaire::Grammaire(vector<string> grammaire_brut)
     }
 }
 
-void Grammaire::creation(vector<string> grammaire_brut)
+void L3_LC_F5_Grammaire::creation(vector<string> grammaire_brut)
 {
     for(string ligne:grammaire_brut)
     { vector<string> parser=Utilitaire::parse( ligne);
-    //    cerr<<"void Grammaire::creation(vector<string> grammaire_brut) supprimer k'utilisation des espace comme separateur";
+    //    cerr<<"void L3_LC_F5_Grammaire::creation(vector<string> grammaire_brut) supprimer k'utilisation des espace comme separateur";
 
         Regle R1=Regle(parser);
 
@@ -38,30 +26,24 @@ void Grammaire::creation(vector<string> grammaire_brut)
     }
 }
 
-void Grammaire::afficher(const char *Fichier)
+void L3_LC_F5_Grammaire::afficher(const char *Fichier)
 {
     vector<string> liste;
     ofstream sortie(Fichier);
     for(Regle R1:List_Regle)
     {  for(string ligne: R1.afficher())
-        {liste.push_back(ligne);
-        }
+        {liste.push_back(ligne);}
     }
     Utilitaire::ecriture_fichier(Fichier,liste);
 
 }
 
-
-
-
-
-
-premier_suivant Grammaire::selection(vector<premier_suivant> liste,string nom)
+premier_suivant L3_LC_F5_Grammaire::selection(vector<premier_suivant> liste,string nom)
 { for(premier_suivant current:liste){ if(!current.Nom.compare(nom)){return current;}}}
 
 
 
-bool Grammaire::test(vector<premier_suivant> actuel,vector<string> terminaux)
+bool L3_LC_F5_Grammaire::test(vector<premier_suivant> actuel,vector<string> terminaux)
 {for(premier_suivant a:actuel)
     { for(string z:a.Liste_element)
         {if(!Utilitaire::appartient(z,terminaux))
@@ -70,76 +52,8 @@ bool Grammaire::test(vector<premier_suivant> actuel,vector<string> terminaux)
     }
     return true;
 }
-vector<premier_suivant> Grammaire::get_suivant(vector<string> terminaux)
-{
 
-    cout<<"vector<premier_suivant> Grammaire::get_suivant(vector<string> terminaux) a finir &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& "<<endl;
-    vector<premier_suivant>Suivant;
-/*
-    1.Mettre $ dans SUIVANT(S), où S est l’axiome et $ est le marqueur de fin.
-    2. S’il y a une production AαBβ, le contenu de PREMIER(β) excepté ε, est ajouté à SUIVANT(B).
-    3. S’il existe une production AαB ou une production AαBβ telle que PREMIER(β) contient ε (c.a.d. β ε), les éléments de SUIVANT(A) sont ajoutés à SUIVANT(B).
-*/
-    //initialisation de la liste
-    for(Regle a:List_Regle)
-    {
-        premier_suivant tmp;
-        vector<string> liste_suivant;
-        tmp.Nom=a.Nom;
-        liste_suivant.push_back("$");
-
-       // cout<<endl<<"------------------------------"<<tmp.Nom<<endl;
-        /*
-      for(vector<string> ligne:a.token)
-      {
-       vector<string> alpha;
-       string B="vide";
-       string beta;
-          int curseur=0;
-
-          while(curseur<ligne.size() && !Utilitaire::appartient(ligne[curseur],terminaux))
-          {alpha.push_back(ligne[curseur]);
-              curseur++;
-          }
-
-        //  cout<<endl<<"alpha"<<alpha.size()<<" curseur : "<<curseur;
-
-          if(alpha.size()>curseur && Utilitaire::appartient(ligne[curseur],terminaux))
-              {
-                //  cout<<"mise de B"<<endl;
-                  B=ligne[curseur];
-              if(curseur+1<ligne.size()){beta=ligne[curseur+1];}
-             }
-
-
-        //  cout<<endl<<"test"<<(alpha.size()>curseur)<<" : "<<( B.compare("vide"))<<" "<<B;
-            if(alpha.size()>=curseur && B.compare("vide"))// A-> alphaB
-            {
-                //cout<<endl<<"alpha"<<alpha.size()<<" B : "<<B;
-            }
-        }*/
-        tmp.Liste_element=liste_suivant;
-        Suivant.push_back(tmp);
-    }
-
-    Suivant[0].Liste_element.push_back(")");
-    Suivant[1].Liste_element.push_back(")");
-    Suivant[2].Liste_element.push_back(")");
-    Suivant[3].Liste_element.push_back(")");
-    Suivant[4].Liste_element.push_back(")");
-
-    Suivant[2].Liste_element.push_back("+");
-    Suivant[3].Liste_element.push_back("+");
-    Suivant[4].Liste_element.push_back("+");
-
-    Suivant[4].Liste_element.push_back("*");
-
-    return  Suivant;
-}
-
-
-
-vector<premier_suivant> Grammaire::get_premier(vector<string> terminaux)
+vector<premier_suivant> L3_LC_F5_Grammaire::get_premier(vector<string> terminaux)
 { vector<premier_suivant>initialiser;
     vector<premier_suivant>tmp;
     for(Regle a:List_Regle)
@@ -168,7 +82,7 @@ vector<premier_suivant> Grammaire::get_premier(vector<string> terminaux)
 
 
 
-vector<string> Grammaire::get_terminaux(vector<string> non_terminaux)
+vector<string> L3_LC_F5_Grammaire::get_terminaux(vector<string> non_terminaux)
 {   vector<string> element;
     vector<string> terminaux_brut;
     vector<string> terminaux;
@@ -195,15 +109,15 @@ vector<string> Grammaire::get_terminaux(vector<string> non_terminaux)
 
     return terminaux;
 }
-vector<string> Grammaire::get_non_terminaux()
+vector<string> L3_LC_F5_Grammaire::get_non_terminaux()
 { vector<string> non_terminaux;
     for(Regle tester:List_Regle)
     {non_terminaux.push_back(tester.Nom);}
     return non_terminaux;
 }
-Grammaire Grammaire::Derecusivite_gauche()
+L3_LC_F5_Grammaire L3_LC_F5_Grammaire::Derecusivite_gauche()
 {
-    Grammaire derecursiver;
+    L3_LC_F5_Grammaire derecursiver;
     int nb_recursiviter;
 
     for(Regle R:List_Regle)
@@ -251,10 +165,10 @@ Grammaire Grammaire::Derecusivite_gauche()
     return derecursiver;
 }
 
-Grammaire Grammaire::table_d_analyse(vector<premier_suivant> premier,vector<premier_suivant> suivant, vector<string> terminaux,vector<string> non_terminaux)
+L3_LC_F5_Grammaire L3_LC_F5_Grammaire::table_d_analyse(vector<premier_suivant> premier,vector<premier_suivant> suivant, vector<string> terminaux,vector<string> non_terminaux)
 { cout<<endl <<"possede_vide() a faire detecter la presence de # &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& ";
 
-    Grammaire table_d_analyse;
+    L3_LC_F5_Grammaire table_d_analyse;
 
     for(premier_suivant ligne:premier)
     {Regle ligne_tableau;
@@ -273,80 +187,87 @@ Grammaire Grammaire::table_d_analyse(vector<premier_suivant> premier,vector<prem
                         {if(a.Nom.compare(ligne.Nom)==0){a=z;}}
 
                         for(string tester:z.Liste_element)
-                            {case_tableau.push_back(tester);
-
-                            }
-
-
+                            {case_tableau.push_back(tester);}
                     }
-
-
-
                 ligne_tableau.token.push_back(case_tableau);
             }
-
         table_d_analyse.List_Regle.push_back(ligne_tableau);
     }
-
 
     return table_d_analyse;
 }
 
-Regle Grammaire::select(string nom)
+Regle L3_LC_F5_Grammaire::select(string nom)
 {for(Regle tester:List_Regle)
     {  if( tester.Nom.compare(nom)==0)        {return tester;}}
     Regle vide;
     return vide ;
 }
 
-vector<premier_suivant> Grammaire::get_suivant2(vector<string> terminaux)
+vector<premier_suivant> L3_LC_F5_Grammaire::get_suivant(vector<premier_suivant> premier,vector<string> terminaux,vector<string> non_terminaux)
 {
-vector<string> suivant;
+    vector<premier_suivant>suivant;
+    vector<premier_suivant>tmp;
 
-suivant.push_back("$");
 
+    cout<<" A rajouter get_suivant2 la selection pour mettre $"<<endl;
 
-for(Regle regles:List_Regle)
-{
-    for(vector<string> valeur : regles.token)
+    //1.Mettre $ dans SUIVANT(S), où S est l’axiome et $ est le marqueur de fin.
+
+    for(Regle a:List_Regle)
     {
-        if(char *index = strstr(valeur,regles.Nom))
+        premier_suivant test;
+        test.Nom=a.Nom;
+        test.Liste_element.push_back("$");//check la condition quand c'est pas vrai
+        suivant.push_back(test);
+
+    }
+
+
+    //2. S’il y a une production AαBβ, le contenu de PREMIER(β) excepté ε, est ajouté à SUIVANT(B).
+    for(Regle a:List_Regle)
+    {
+        for(vector<string> b:a.token)
         {
-        index += regle.getnom().size();
-        if(*index==0 && regle.getnom()!=regles.get().getnom())
-            {
-            suivant += getsuivant(valeur);
-            }
-
-        if(*index!=0 && *index!='\'')
-            {
-            string str;
-            str += index[0];
-            if(index[1]=='\'')
-                {str += index[1];}
-
-            int n = regles.indexOf(str,comparernom);
-
-            if(n>=0)
-                {
-                suivant += getpremier(regles.token[n]);
-                if(suivant.contains("#"))
-                    {
-                    suivant.removeAll("#");
-                    suivant += getsuivant(regles.token[n]);
+            if(b.size()==3 && Utilitaire::appartient(b[1],non_terminaux) )
+            {if(Utilitaire::appartient(b[2],non_terminaux))
+                {for(string z:premier[get_ID_List_premier_suivant(premier,b[2])].Liste_element)
+                    { if(z.compare("#")!=0)
+                        {suivant[get_ID_List_premier_suivant(suivant,b[1])].Liste_element.push_back(z); }
                     }
                 }
-            else if(str.size()>0)
-                {suivant.push_back(str);}
+                else
+                {suivant[get_ID_List_premier_suivant( suivant,b[1])].Liste_element.push_back(b[2]);}
             }
         }
     }
-}
-//https://github.com/theaud/E4Language_compilation/blob/master/E04grammaire.cpp
 
 
-    //retirer les doublons dans suivant
-    suivant.unique();
+    cout<<endl<<"------------------------------------------------------------------------"<<endl;
+    cout<<endl<<"REGLE3"<<endl;
+
+    //3. S’il existe une production AαB ou une production AαBβ telle que PREMIER(β) contient ε (c.a.d. β ε), les éléments de SUIVANT(A) sont ajoutés à SUIVANT(B).
+
+    for(Regle a:List_Regle)
+    {for(vector<string> b:a.token)
+        {if((b.size()==2 && Utilitaire::appartient(b[1],non_terminaux))||(b.size()==3 && get_ID_List_premier_suivant(premier,b[2])!=-1 && premier[get_ID_List_premier_suivant(premier,b[2])].possede("#") ))
+            {if(a.Nom.compare(b[1])!=0)
+                { for(string z:suivant[get_ID_List_premier_suivant(suivant,a.Nom)].Liste_element)
+                    { if(z.compare("#")!=0 && !Utilitaire::appartient(z,suivant[get_ID_List_premier_suivant(suivant,b[1])].Liste_element))//si different de # et qu'il n'est pas deja present
+                        {suivant[get_ID_List_premier_suivant(suivant,b[1])].Liste_element.push_back(z);}
+                    }
+                }
+            }
+        }
+    }
+
 
 return suivant;
 }
+
+
+int L3_LC_F5_Grammaire::get_ID_List_regle(vector<Regle> list,string nom)
+{for(int i=0;i<list.size();i++){if(list[i].Nom.compare(nom)==0){return i;}}return -1;}
+
+int L3_LC_F5_Grammaire::get_ID_List_premier_suivant(vector<premier_suivant> list,string nom)
+{for(int i=0;i<list.size();i++){if(list[i].Nom.compare(nom)==0){return i;}}return -1;}
