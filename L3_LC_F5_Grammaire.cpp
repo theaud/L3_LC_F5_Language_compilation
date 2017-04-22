@@ -1,4 +1,7 @@
+#include <fstream>
+#include <cstdlib>
 #include "L3_LC_F5_Grammaire.h"
+#include "Entrer.h"
 
 
 L3_LC_F5_Grammaire::L3_LC_F5_Grammaire(){}

@@ -1,0 +1,14 @@
+Regle : E donne :
+      T E'
+Regle : E' donne :
+      #
+      + T E'
+Regle : T donne :
+      F T'
+Regle : T' donne :
+      #
+      * F T'
+Regle : F donne :
+      ( E )
+      id
+

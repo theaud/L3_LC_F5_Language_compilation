@@ -3,10 +3,7 @@
 #ifndef L3_LC_F5_LANGUAGE_COMPILATION_STRUCTURE_H
 #define L3_LC_F5_LANGUAGE_COMPILATION_STRUCTURE_H
 
-#include <iostream>
-#include <vector>
-
-#include "premier_suivant.h"
+#include "include.h"
 #include "L3_LC_F5_Grammaire.h"
 
 

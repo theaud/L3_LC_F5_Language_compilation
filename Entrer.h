@@ -4,10 +4,8 @@
 
 #ifndef L3_LC_F5_LANGUAGE_COMPILATION_PARSER_H
 #define L3_LC_F5_LANGUAGE_COMPILATION_PARSER_H
-#include <iostream>
-#include <vector>
 
-using namespace std;
+#include "include.h"
 
 class Entrer {
 public :

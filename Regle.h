@@ -3,9 +3,7 @@
 #ifndef L3_LC_F5_LANGUAGE_COMPILATION_REGLE_H
 #define L3_LC_F5_LANGUAGE_COMPILATION_REGLE_H
 
-#include <iostream>
-#include <vector>
-using namespace std;
+#include "include.h"
 
 
 class Regle {

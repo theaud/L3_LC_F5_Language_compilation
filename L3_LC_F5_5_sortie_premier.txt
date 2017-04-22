@@ -1,0 +1,7 @@
+Affichage les premiers
+ Pour	E	 les premiers sont : [  (	~	id  ]
+ Pour	E'	 les premiers sont : [  #	~	+  ]
+ Pour	T	 les premiers sont : [  (	~	id  ]
+ Pour	T'	 les premiers sont : [  #	~	*  ]
+ Pour	F	 les premiers sont : [  (	~	id  ]
+

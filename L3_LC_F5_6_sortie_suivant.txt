@@ -1,0 +1,7 @@
+Affichage les suivants
+ Pour	E	 les suivants sont : [	$	~	)  ]
+ Pour	E'	 les suivants sont : [	$	~	)  ]
+ Pour	T	 les suivants sont : [	$	~	+	~	)  ]
+ Pour	T'	 les suivants sont : [	$	~	+	~	)  ]
+ Pour	F	 les suivants sont : [	$	~	*	~	+	~	)  ]
+

@@ -1,0 +1,2 @@
+Etat non terminaux : [	E	E'	T	T'	F	]
+

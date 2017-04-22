@@ -1,0 +1,10 @@
+Regle : E donne :
+      E + T
+      T
+Regle : T donne :
+      T * F
+      F
+Regle : F donne :
+      ( E )
+      id
+

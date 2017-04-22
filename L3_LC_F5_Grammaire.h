@@ -2,17 +2,10 @@
 
 #ifndef L3_LC_F5_LANGUAGE_COMPILATION_GRAMMAIRE_H
 #define L3_LC_F5_LANGUAGE_COMPILATION_GRAMMAIRE_H
-#include <iostream>
-#include <vector>
-#include <fstream>
-#include "Regle.h"
-#include "L3_LC_F5_Grammaire.h"
-#include "Entrer.h"
-#include "Structure.h"
-#include "Utilitaire.h"
 
+#include "include.h"
+#include "Regle.h"
 #include "premier_suivant.h"
-using namespace std;
 
 class L3_LC_F5_Grammaire {
 public :
