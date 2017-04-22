@@ -97,12 +97,12 @@ vector<string> Regle::nn_recursif()
 vector<string> Regle::getRegle(string valeur_initiale)
 {
     for(vector<string> tester:token)
-    {
-        if(tester.size()>0 && tester[0].compare(valeur_initiale)==0)
-        {
-            return tester;
-        }
+    {if(tester.size()>0 && tester[0].compare(valeur_initiale)==0)
+        { return tester;}
     }
+
+
+
 
     vector<string> vide;
     return vide ;

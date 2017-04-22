@@ -15,6 +15,7 @@ public:
     vector<premier_suivant> premier;
     vector<premier_suivant> suivant;
     vector<string> terminaux;
+    vector<string> terminaux_premier;
     vector<string> non_terminaux;
     L3_LC_F5_Grammaire table_d_analyse;
 
@@ -25,6 +26,7 @@ public:
      vector<string> afficher_table_d_analyse(L3_LC_F5_Grammaire table_d_analyse);
      vector<string> affichage_non_terminaux(vector<string> non_terminaux);
      vector<string> affichage_terminaux(vector<string> terminaux);
+     vector<string> netoyage_terminaux(vector<string>  terminaux_brut);
 
     bool etape1();
     bool etape2();

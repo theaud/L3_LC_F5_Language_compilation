@@ -33,6 +33,8 @@ public :
     L3_LC_F5_Grammaire table_d_analyse(vector<premier_suivant> premier,vector<premier_suivant> suivant, vector<string> terminaux,vector<string> non_terminaux);
     L3_LC_F5_Grammaire Derecusivite_gauche();
     Regle select(string nom);
+    vector<string> getRegle(string nom_regle_origine,string valeur_rechercher,vector< string> non_terminaux,vector<premier_suivant> premier);
+
 };
 
 

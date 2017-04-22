@@ -69,14 +69,17 @@ bool Structure::etape3()
 
      Utilitaire::ecriture_fichier("L3_LC_F5_3_sortie_non_terminaux.txt",affichage_non_terminaux(non_terminaux));
 
-    terminaux=Gramairre_derecurssiver.get_terminaux(non_terminaux);
+    terminaux_premier=Gramairre_derecurssiver.get_terminaux(non_terminaux);
 
-   Utilitaire::ecriture_fichier("L3_LC_F5_4_sortie_terminaux.txt",affichage_terminaux(terminaux));
-    terminaux.push_back("$");
+   Utilitaire::ecriture_fichier("L3_LC_F5_4_sortie_terminaux.txt",affichage_terminaux(terminaux_premier));
 
-    premier=Gramairre_derecurssiver.get_premier(terminaux);
+
+
+
+    premier=Gramairre_derecurssiver.get_premier(terminaux_premier);
 
    Utilitaire::ecriture_fichier("L3_LC_F5_5_sortie_premier.txt",afficher_premier());
+    terminaux=netoyage_terminaux(terminaux_premier);
 
     suivant=Gramairre_derecurssiver.get_suivant(premier,terminaux,non_terminaux);
 
@@ -158,7 +161,7 @@ vector<string> Structure::afficher_table_d_analyse(L3_LC_F5_Grammaire table_d_an
 
 
     for(Regle ligne : table_d_analyse.List_Regle)
-    {int i=0;tmp=ligne.Nom;
+    {int i=0;tmp=ligne.Nom+"\t";
 
         for(vector<string> case_tableau:ligne.token)
         {
@@ -191,4 +194,14 @@ vector<string> Structure::affichage_terminaux(vector<string> terminaux)
     returned+="\t]";
     a.push_back(returned);
     return a;
+}
+
+vector<string> Structure::netoyage_terminaux(vector<string>  terminaux_brut)
+{vector<string> returned;
+    for(string a:terminaux_brut)
+    {
+        if(a.compare("#")!=0){returned.push_back(a);}
+    }
+    returned.push_back("$");
+    return returned;
 }

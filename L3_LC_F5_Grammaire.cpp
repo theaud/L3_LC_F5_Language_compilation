@@ -70,7 +70,8 @@ vector<premier_suivant> L3_LC_F5_Grammaire::get_premier(vector<string> terminaux
             {if(Utilitaire::appartient(element,terminaux))
                 {current.Liste_element.push_back(element);}
                 else
-                { for(string a_copier:selection(initialiser,element).Liste_element)
+                {
+                    for(string a_copier:selection(initialiser,element).Liste_element)
                     { current.Liste_element.push_back(a_copier);}
                 }
             }
@@ -95,7 +96,7 @@ vector<string> L3_LC_F5_Grammaire::get_terminaux(vector<string> non_terminaux)
     {for(vector<string> a:tester.token)
         {if(a.size()>0 )
             {for(string tester:a)
-                {element.push_back(tester);}
+                { element.push_back(tester); }
             }
         }
     }
@@ -106,7 +107,7 @@ vector<string> L3_LC_F5_Grammaire::get_terminaux(vector<string> non_terminaux)
     }
 //-------------------------------------------------------
     for(string a:terminaux_brut)//suppresion doublon
-    { if(!Utilitaire::appartient(a,terminaux))
+    { if(!Utilitaire::appartient(a,terminaux) )
         { terminaux.push_back(a);}
     }
 
@@ -173,27 +174,40 @@ L3_LC_F5_Grammaire L3_LC_F5_Grammaire::table_d_analyse(vector<premier_suivant> p
 
     L3_LC_F5_Grammaire table_d_analyse;
 
+
+    /*
+1. Pour chaque production A α de la grammaire, procéder aux étapes 2 et 3.
+2. Pour chaque terminal a dans PREMIER(α), ajouter A α à M[A,a].
+3. Si ε est dans PREMIER(α), ajouter A α à M[A,b] pour chaque terminal b dans SUIVANT(A). Si ε est dans PREMIER(α) et $ est dans SUIVANT(A), ajouter A α à M[A,$].
+3. Faire de chaque entrée non définie de M une erreur.
+     */
+
     for(premier_suivant ligne:premier)
     {Regle ligne_tableau;
     ligne_tableau.Nom=ligne.Nom;
 
             for (string colonne:terminaux)
-            {vector<string> case_tableau;
+            {if(colonne.compare("#")!=0)
+                { vector<string> case_tableau;
 
-                if (ligne.possede(colonne) && colonne.compare("#")!=0)//cas ou la valeur est un etat premier de la regle
-                {vector<string> current=select(ligne_tableau.Nom).getRegle(colonne);
-                case_tableau=current;
-                }
-                else if (ligne.possede(colonne) && colonne.compare("#")==0)
-                    {premier_suivant z;
-                       for(premier_suivant a:suivant)
-                        {if(a.Nom.compare(ligne.Nom)==0){a=z;}}
+                if (ligne.possede(colonne))//cas ou la valeur est un etat premier de la regle
+                    {
+                        case_tableau=getRegle(ligne.Nom,colonne,terminaux,premier);
 
-                        for(string tester:z.Liste_element)
-                            {case_tableau.push_back(tester);}
                     }
+                else if(get_ID_List_premier_suivant(premier,"#")!=-1 )//cas ou Regle posede #
+                    {
+                        cout <<"testerrrrr "<<endl;
+                        vector<string> a;
+                        a.push_back("test");
+                        case_tableau=a;
+                    }
+
+
                 ligne_tableau.token.push_back(case_tableau);
+                }
             }
+
         table_d_analyse.List_Regle.push_back(ligne_tableau);
     }
 
@@ -210,11 +224,8 @@ Regle L3_LC_F5_Grammaire::select(string nom)
 vector<premier_suivant> L3_LC_F5_Grammaire::get_suivant(vector<premier_suivant> premier,vector<string> terminaux,vector<string> non_terminaux)
 {
     vector<premier_suivant>suivant;
-    vector<premier_suivant>tmp;
-
 
     cout<<" A rajouter get_suivant2 la selection pour mettre $"<<endl;
-
     //1.Mettre $ dans SUIVANT(S), où S est l’axiome et $ est le marqueur de fin.
 
     for(Regle a:List_Regle)
@@ -225,7 +236,6 @@ vector<premier_suivant> L3_LC_F5_Grammaire::get_suivant(vector<premier_suivant> 
         suivant.push_back(test);
 
     }
-
 
     //2. S’il y a une production AαBβ, le contenu de PREMIER(β) excepté ε, est ajouté à SUIVANT(B).
     for(Regle a:List_Regle)
@@ -245,10 +255,6 @@ vector<premier_suivant> L3_LC_F5_Grammaire::get_suivant(vector<premier_suivant> 
         }
     }
 
-
-    cout<<endl<<"------------------------------------------------------------------------"<<endl;
-    cout<<endl<<"REGLE3"<<endl;
-
     //3. S’il existe une production AαB ou une production AαBβ telle que PREMIER(β) contient ε (c.a.d. β ε), les éléments de SUIVANT(A) sont ajoutés à SUIVANT(B).
 
     for(Regle a:List_Regle)
@@ -264,7 +270,6 @@ vector<premier_suivant> L3_LC_F5_Grammaire::get_suivant(vector<premier_suivant> 
         }
     }
 
-
 return suivant;
 }
 
@@ -274,3 +279,36 @@ int L3_LC_F5_Grammaire::get_ID_List_regle(vector<Regle> list,string nom)
 
 int L3_LC_F5_Grammaire::get_ID_List_premier_suivant(vector<premier_suivant> list,string nom)
 {for(int i=0;i<list.size();i++){if(list[i].Nom.compare(nom)==0){return i;}}return -1;}
+
+
+
+vector<string> L3_LC_F5_Grammaire::getRegle(string nom_regle_origine,string valeur_rechercher,vector< string> non_terminaux,vector<premier_suivant> premier)
+{
+
+    int i=get_ID_List_regle(List_Regle,nom_regle_origine);
+    if(List_Regle[i].token.size()==1)//un seul element c'est donc le bon
+    {for(vector<string> returned:List_Regle[i].token)
+        {return returned; }
+
+    }
+    else if(List_Regle[i].token.size()>1)
+    {
+        for(vector<string> returned:List_Regle[i].token)
+        {
+            if(returned.size()>0 && returned[0].compare(valeur_rechercher)==0)
+                {return returned; }
+
+            else if (returned.size()>0 && Utilitaire::appartient(returned[0],non_terminaux))//a ajouter cas
+                {
+                   cout<<endl<<" ajouter comparaison du premier de returned[0] qui est un etat nn terminaux :"<<nom_regle_origine<<" "<<valeur_rechercher;
+                }
+        }
+
+    }
+
+    vector<string> vide;
+    return vide ;
+}
+
+
+
