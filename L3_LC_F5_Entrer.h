@@ -5,9 +5,9 @@
 #ifndef L3_LC_F5_LANGUAGE_COMPILATION_PARSER_H
 #define L3_LC_F5_LANGUAGE_COMPILATION_PARSER_H
 
-#include "include.h"
+#include "L3_LC_F5_include.h"
 
-class Entrer {
+class L3_LC_F5_Entrer {
 public :
 
     static string lirestr(FILE *file);

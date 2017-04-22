@@ -19,8 +19,8 @@ public:
     static bool appartient(string a,vector<string>non_terminaux);
     static vector<string> extend(string valeur);
     static vector<string> test();
-    static void ecriture_fichier( const char *Fichier,vector<string> entrer);
-
+    static void ecriture_fichier( const char *Fichier,const char *Fichier2,vector<string> entrer);
+    static void clear_fichier(const char *Fichier);
 
 };
 

@@ -1,17 +1,19 @@
 #include <vector>
 #include <malloc.h>
 
-#include "Regle.h"
-#include "Entrer.h"
+#include "L3_LC_F5_Regle.h"
+#include "L3_LC_F5_Entrer.h"
 #include "L3_LC_F5_Grammaire.h"
-#include "Structure.h"
+#include "L3_LC_F5_Structure.h"
 
 
 
 
 int main(int argc, char *argv[]) {
 
-   Structure aaaa=Structure();
+  Structure aaaa=Structure();
+
+
 
 
     return 0;

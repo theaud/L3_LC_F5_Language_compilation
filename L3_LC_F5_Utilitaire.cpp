@@ -1,7 +1,7 @@
 #include <sstream>
 #include <fstream>
-#include "Utilitaire.h"
-
+#include "L3_LC_F5_Utilitaire.h"
+#include "L3_LC_F5_Entrer.h"
 
 
 bool Utilitaire::appartient(string element_tester,vector<string>list_tester)
@@ -23,8 +23,25 @@ vector<string> Utilitaire::parse(string entrer) {
 void Utilitaire::affichageln( vector<string> entrer){ for(string ligne:entrer){cout<<ligne<<endl;}}
 void Utilitaire::affichage( vector<string> entrer){ for(string ligne:entrer){cout<<ligne<<" ";}cout<<endl;}
 
-void Utilitaire::ecriture_fichier(const char *Fichier, vector<string> entrer)
-{ofstream sortie(Fichier);for(string ligne:entrer){sortie<<ligne<<endl;cout<<ligne<<endl;}sortie<<endl;cout<<endl;}
+void Utilitaire::ecriture_fichier(const char *Fichier,const char *Fichier2, vector<string> entrer)
+{
+   vector<string> copy=L3_LC_F5_Entrer::lecture(Fichier2);
+
+    ofstream sortie(Fichier);
+    ofstream ss(Fichier2);
+
+    for(string a:copy)    {ss<<a<<endl;}
+
+        for(string ligne:entrer)
+        {ss<<ligne<<endl;sortie<<ligne<<endl;cout<<ligne<<endl;}
+
+
+    sortie<<endl<<"---------------------------------------------------------------"<<endl;
+    cout<<endl<<"-----------------------------------------------------------------"<<endl;
+    ss<<endl<<"-------------------------------------------------------------------"<<endl;
+
+}
+void Utilitaire::clear_fichier(const char *Fichier){ofstream ss(Fichier);}
 
 vector<string> Utilitaire::extend(string valeur){vector <string> returned;returned.push_back(valeur);    return returned;}
 

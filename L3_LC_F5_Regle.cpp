@@ -1,5 +1,5 @@
 #include <fstream>
-#include "Regle.h"
+#include "L3_LC_F5_Regle.h"
 
 //----------------------------------------------------------------------------------------------------------------------
 //-----------------------------------   Constructeur    ----------------------------------------------------------------
@@ -12,8 +12,8 @@ Regle::Regle()
 Regle::Regle(vector<string> entrer)
 {
 
-    if(entrer.size()<=2){cerr<<"Regle::Regle(vector<string> entrer) , Entrer trop courte"<<endl;}
-    if(entrer[1]!="="){cerr<<"Regle::Regle(vector<string> entrer) , Erreur de synthaxe"<<endl;}
+    if(entrer.size()<=2){cerr<<"Regle::Regle(vector<string> entrer) , L3_LC_F5_Entrer trop courte"<<endl;}
+    if(!(entrer[1]=="=" || entrer[1]=="")){cerr<<"Regle::Regle(vector<string> entrer) , Erreur de synthaxe"<<endl;}
 
      Nom=entrer[0];
 

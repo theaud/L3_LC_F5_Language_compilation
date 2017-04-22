@@ -3,7 +3,7 @@
 #ifndef L3_LC_F5_LANGUAGE_COMPILATION_REGLE_H
 #define L3_LC_F5_LANGUAGE_COMPILATION_REGLE_H
 
-#include "include.h"
+#include "L3_LC_F5_include.h"
 
 
 class Regle {

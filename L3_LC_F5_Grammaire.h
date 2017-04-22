@@ -3,9 +3,9 @@
 #ifndef L3_LC_F5_LANGUAGE_COMPILATION_GRAMMAIRE_H
 #define L3_LC_F5_LANGUAGE_COMPILATION_GRAMMAIRE_H
 
-#include "include.h"
-#include "Regle.h"
-#include "premier_suivant.h"
+#include "L3_LC_F5_include.h"
+#include "L3_LC_F5_Regle.h"
+#include "L3_LC_F5_premier_suivant.h"
 
 class L3_LC_F5_Grammaire {
 public :
@@ -19,7 +19,7 @@ public :
     L3_LC_F5_Grammaire(vector<string> grammaire_brut);
 
 
-    void afficher(const char *Fichier);
+    void afficher(const char *Fichier,string complet);
     bool test(vector<premier_suivant> actuel,vector<string> terminaux);
     vector<premier_suivant> get_premier(vector<string> terminaux);
 

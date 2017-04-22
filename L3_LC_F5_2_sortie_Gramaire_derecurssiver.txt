@@ -1,14 +1,10 @@
-Regle : E donne :
-      T E'
-Regle : E' donne :
+Regle : S donne :
+      ( L )
+      a
+Regle : L donne :
+      S L'
+Regle : L' donne :
       #
-      + T E'
-Regle : T donne :
-      F T'
-Regle : T' donne :
-      #
-      * F T'
-Regle : F donne :
-      ( E )
-      id
+      , S L'
 
+---------------------------------------------------------------

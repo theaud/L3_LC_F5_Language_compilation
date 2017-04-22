@@ -1,7 +1,7 @@
 #ifndef L3_LC_F5_LANGUAGE_COMPILATION_PREMIER_SUIVANT_H
 #define L3_LC_F5_LANGUAGE_COMPILATION_PREMIER_SUIVANT_H
 
-#include "include.h"
+#include "L3_LC_F5_include.h"
 
 class premier_suivant {
 

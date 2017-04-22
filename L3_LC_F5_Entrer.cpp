@@ -6,12 +6,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <fstream>
-#include "Entrer.h"
+#include "L3_LC_F5_Entrer.h"
 #include "L3_LC_F5_Grammaire.h"
 
 
 
-string Entrer::lirestr(FILE *file)
+string L3_LC_F5_Entrer::lirestr(FILE *file)
 {
     char temp[1000];
     fgets(temp,1000,file);
@@ -22,7 +22,7 @@ string Entrer::lirestr(FILE *file)
 }
 
 
-vector<string> Entrer::lecture(const char * addresse)
+vector<string> L3_LC_F5_Entrer::lecture(const char * addresse)
 {
     vector<string> Texte;
     fstream fichier(addresse);

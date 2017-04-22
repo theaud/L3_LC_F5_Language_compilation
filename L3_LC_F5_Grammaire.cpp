@@ -1,12 +1,12 @@
 #include <fstream>
 #include <cstdlib>
 #include "L3_LC_F5_Grammaire.h"
-#include "Entrer.h"
+#include "L3_LC_F5_Entrer.h"
 
 
 L3_LC_F5_Grammaire::L3_LC_F5_Grammaire(){}
 
-L3_LC_F5_Grammaire::L3_LC_F5_Grammaire(const char *Fichier){    L3_LC_F5_Grammaire(Entrer::lecture(Fichier));}
+L3_LC_F5_Grammaire::L3_LC_F5_Grammaire(const char *Fichier){    L3_LC_F5_Grammaire(L3_LC_F5_Entrer::lecture(Fichier));}
 
 L3_LC_F5_Grammaire::L3_LC_F5_Grammaire(vector<string> grammaire_brut)
 { for(string ligne:grammaire_brut)
@@ -29,7 +29,7 @@ void L3_LC_F5_Grammaire::creation(vector<string> grammaire_brut)
     }
 }
 
-void L3_LC_F5_Grammaire::afficher(const char *Fichier)
+void L3_LC_F5_Grammaire::afficher(const char *Fichier,string complet)
 {
     vector<string> liste;
     ofstream sortie(Fichier);
@@ -37,7 +37,7 @@ void L3_LC_F5_Grammaire::afficher(const char *Fichier)
     {  for(string ligne: R1.afficher())
         {liste.push_back(ligne);}
     }
-    Utilitaire::ecriture_fichier(Fichier,liste);
+    Utilitaire::ecriture_fichier(Fichier,complet.c_str(),liste);
 
 }
 
@@ -299,12 +299,13 @@ vector<string> L3_LC_F5_Grammaire::getRegle(string nom_regle_origine,string vale
                 {return returned; }
 
             else if (returned.size()>0 && Utilitaire::appartient(returned[0],non_terminaux))//a ajouter cas
-                {
-                   cout<<endl<<" ajouter comparaison du premier de returned[0] qui est un etat nn terminaux :"<<nom_regle_origine<<" "<<valeur_rechercher;
+                {// cout<<endl<<" ajouter comparaison du premier de returned[0] qui est un etat nn terminaux :"<<nom_regle_origine<<" "<<valeur_rechercher;
+
                 }
         }
 
     }
+    cout<<endl<<" ajouter comparaison du premier de returned[0] qui est un etat nn terminaux :"<<nom_regle_origine<<" "<<valeur_rechercher;
 
     vector<string> vide;
     return vide ;

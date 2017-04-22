@@ -3,7 +3,7 @@
 #ifndef L3_LC_F5_LANGUAGE_COMPILATION_STRUCTURE_H
 #define L3_LC_F5_LANGUAGE_COMPILATION_STRUCTURE_H
 
-#include "include.h"
+#include "L3_LC_F5_include.h"
 #include "L3_LC_F5_Grammaire.h"
 
 
@@ -18,7 +18,8 @@ public:
     vector<string> terminaux_premier;
     vector<string> non_terminaux;
     L3_LC_F5_Grammaire table_d_analyse;
-
+    string fichier;
+    string complet;
     Structure();
 
      vector<string> afficher_premier();
@@ -27,7 +28,9 @@ public:
      vector<string> affichage_non_terminaux(vector<string> non_terminaux);
      vector<string> affichage_terminaux(vector<string> terminaux);
      vector<string> netoyage_terminaux(vector<string>  terminaux_brut);
+     vector<string> Analyse(string chaine_entrer);
 
+    bool etape0();
     bool etape1();
     bool etape2();
     bool etape3();
