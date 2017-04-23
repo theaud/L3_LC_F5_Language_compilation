@@ -1,6 +1,7 @@
 Affichage les premiers
- Pour	S	 les premiers sont : [  (	~	a  ]
- Pour	L	 les premiers sont : [  (	~	a  ]
- Pour	L'	 les premiers sont : [  #	~	,  ]
+ Pour	A	 les premiers sont : [  0	~	#  ]
+ Pour	B	 les premiers sont : [  0	~	#  ]
+ Pour	C	 les premiers sont : [  1	~	#  ]
+ Pour	D	 les premiers sont : [  2	~	3	~	4  ]
 
 ---------------------------------------------------------------

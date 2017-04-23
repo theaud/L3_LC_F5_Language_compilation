@@ -10,7 +10,7 @@ Structure::Structure()
 { string input = "";
     int selection=0;
 
-    do{  system("cls");
+    do{
     //etape 0 :choix du fichier
         cout<<"rajouter choix du fichier d'entrer"<<endl;
       etape0();

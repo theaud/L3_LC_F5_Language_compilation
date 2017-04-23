@@ -170,10 +170,7 @@ L3_LC_F5_Grammaire L3_LC_F5_Grammaire::Derecusivite_gauche()
 }
 
 L3_LC_F5_Grammaire L3_LC_F5_Grammaire::table_d_analyse(vector<premier_suivant> premier,vector<premier_suivant> suivant, vector<string> terminaux,vector<string> non_terminaux)
-{ cout<<endl <<"possede_vide() a faire detecter la presence de # &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& ";
-
-    L3_LC_F5_Grammaire table_d_analyse;
-
+{    L3_LC_F5_Grammaire table_d_analyse;
 
     /*
 1. Pour chaque production A α de la grammaire, procéder aux étapes 2 et 3.

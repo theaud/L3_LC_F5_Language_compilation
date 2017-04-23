@@ -1,10 +1,14 @@
-Regle : S donne :
-      ( L )
-      a
-Regle : L donne :
-      S L'
-Regle : L' donne :
+Regle : A donne :
+      B C D
+Regle : B donne :
+      0
       #
-      , S L'
+Regle : C donne :
+      1
+      #
+Regle : D donne :
+      2
+      3
+      4
 
 ---------------------------------------------------------------

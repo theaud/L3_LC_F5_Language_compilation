@@ -1,6 +1,7 @@
 Affichage les suivants
- Pour	S	 les suivants sont : [	$	~	,	~	)  ]
- Pour	L	 les suivants sont : [	$	~	)  ]
- Pour	L'	 les suivants sont : [	$	~	)  ]
+ Pour	A	 le suivant est  : [	$  ]
+ Pour	B	 le suivant est  : [	$  ]
+ Pour	C	 les suivants sont : [	$	~	2	~	3	~	4  ]
+ Pour	D	 le suivant est  : [	$  ]
 
 ---------------------------------------------------------------
